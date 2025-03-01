@@ -119,16 +119,18 @@ const Preview = ({
           </div>
         ))}
 
-        {skillList.map((skills, index) => (
-          <div key={index} className="pb-2 mb-2">
+        {skillList.length > 0 && (
+          <div className="pb-2 mb-2">
             <h6 className="pt-2">
               <u>Skills:</u>
             </h6>
             <ul>
-              <li>{skills.skills}</li>
+              {skillList.map((skill, index) => (
+                <li key={index}>{skill.skills}</li>
+              ))}
             </ul>
           </div>
-        ))}
+        )}
       </div>
     </>
   );

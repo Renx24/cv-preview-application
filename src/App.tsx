@@ -66,7 +66,6 @@ const App = () => {
           {activeTab === "Skills" && (
             <SkillsForm
               onAddSkills={skillsState.addItem}
-              onUpdateSkills={skillsState.updateItem}
               onDeleteSkills={skillsState.deleteItem}
               skillsList={skillsState.list}
             />

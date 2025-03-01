@@ -1,75 +1,67 @@
 import { useState } from "react";
 import { Skills } from "../types.ts";
-import EditableList from "../EditableList.tsx";
 
 interface SkillsFormProps {
   onAddSkills: (skills: Skills) => void;
-  onUpdateSkills: (index: number, skills: Skills) => void;
   onDeleteSkills: (index: number) => void;
   skillsList: Skills[];
 }
 
 const SkillsForm = ({
   onAddSkills,
-  onUpdateSkills,
   onDeleteSkills,
   skillsList,
 }: SkillsFormProps) => {
-  const [skills, setSkills] = useState<Skills>({
-    skills: "",
-  });
-
-  const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [skill, setSkill] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSkills({ ...skills, [e.target.name]: e.target.value });
+    setSkill(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (editIndex !== null) {
-      onUpdateSkills(editIndex, skills);
-      setEditIndex(null);
-    } else {
-      onAddSkills(skills);
-    }
-    setSkills({ skills: "" });
+    if (skill.trim() === "") return; // Prevent empty skills from being added
+    onAddSkills({ skills: skill });
+    setSkill(""); // Clear input after adding
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="border p-3 rounded">
-        <h4>Skills</h4>
-        <div className="mb-2">
+    <div className="border p-3 rounded">
+      <h4>Skills</h4>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-2 d-flex">
           <input
             type="text"
             name="skills"
-            className="form-control"
-            placeholder="Skills"
-            value={skills.skills}
+            className="form-control me-2"
+            placeholder="Enter a skill"
+            value={skill}
             onChange={handleChange}
           />
+          <button type="submit" className="btn btn-success">
+            ADD
+          </button>
         </div>
-        <button type="submit" className="btn btn-success mt-2">
-          {editIndex !== null ? "Update" : "Add"}
-        </button>
       </form>
-      <EditableList<Skills>
-        items={skillsList}
-        renderItem={(skills) => (
-          <>
-            <h5>Skills</h5>
-            <p>{skills.skills}</p>
-          </>
-        )}
-        onDelete={onDeleteSkills}
-        onSelectEdit={(index) => {
-          setSkills({ ...skillsList[index] });
-          setEditIndex(index);
-        }}
-        editIndex={editIndex}
-      />
-    </>
+
+      {/* Skills List */}
+      <ul className="list-group mt-2">
+        {skillsList.map((skill, index) => (
+          <li
+            key={index}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            {skill.skills}
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={() => onDeleteSkills(index)}
+            >
+              ✕
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
