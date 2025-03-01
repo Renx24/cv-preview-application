@@ -25,7 +25,23 @@ const ContactInfo = ({ label, icon: Icon, value }: ContactInfoProps) => {
   if (!value) return null;
   return (
     <>
-      <Icon label={label} icon={Icon} /> {value}
+      <Icon label={label} icon={Icon} />
+      <>
+        {" "}
+        {value.startsWith("github") ||
+        value.startsWith("https://github.com") ? (
+          <a target="_blank" href={value}>
+            {value}
+          </a>
+        ) : value.startsWith("linkedin") ||
+          value.startsWith("https://linkedin.com") ? (
+          <a target="_blank" href={value}>
+            {value}
+          </a>
+        ) : (
+          value
+        )}
+      </>
       <br />
     </>
   );

@@ -131,16 +131,16 @@ const ContactForm = ({
               <br />
               <>
                 {contact.linkedin && (
-                  <>
+                  <a href={contact.linkedin}>
                     {contact.linkedin} <br />
-                  </>
+                  </a>
                 )}
               </>
               <>
                 {contact.github && (
-                  <>
+                  <a href={contact.github}>
                     {contact.github} <br />
-                  </>
+                  </a>
                 )}
               </>
             </p>
