@@ -131,14 +131,28 @@ const ContactForm = ({
               <br />
               <>
                 {contact.linkedin && (
-                  <a href={contact.linkedin}>
+                  <a
+                    target="_blank"
+                    href={
+                      contact.linkedin.startsWith("https://")
+                        ? contact.linkedin
+                        : "https://" + contact.linkedin
+                    }
+                  >
                     {contact.linkedin} <br />
                   </a>
                 )}
               </>
               <>
                 {contact.github && (
-                  <a href={contact.github}>
+                  <a
+                    target="_blank"
+                    href={
+                      contact.github.startsWith("https://")
+                        ? contact.github
+                        : "https://" + contact.github
+                    }
+                  >
                     {contact.github} <br />
                   </a>
                 )}

@@ -29,13 +29,12 @@ const ContactInfo = ({ label, icon: Icon, value }: ContactInfoProps) => {
       <>
         {" "}
         {value.startsWith("github") ||
-        value.startsWith("https://github.com") ? (
-          <a target="_blank" href={value}>
-            {value}
-          </a>
-        ) : value.startsWith("linkedin") ||
-          value.startsWith("https://linkedin.com") ? (
-          <a target="_blank" href={value}>
+        value.startsWith("linkedin") ||
+        value.startsWith("https://") ? (
+          <a
+            target="_blank"
+            href={value.startsWith("https://") ? value : "https://" + value}
+          >
             {value}
           </a>
         ) : (
