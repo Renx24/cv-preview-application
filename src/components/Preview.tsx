@@ -107,9 +107,13 @@ const Preview = ({
 
         {employmentList.map((employment, index) => (
           <div key={index} className="border-bottom pb-2 mb-2">
-            <h6 className="pt-2">
-              <u>Employment history</u>
-            </h6>
+            {index == 0 && (
+              <>
+                <h6 className="pt-2">
+                  <u>Employment history</u>
+                </h6>
+              </>
+            )}
             <strong>{employment.company}</strong> ({employment.fromDate} -{" "}
             {employment.toDate})
             <p>
@@ -126,9 +130,13 @@ const Preview = ({
 
         {educationList.map((edu, index) => (
           <div key={index} className="border-bottom pb-2 mb-2">
-            <h6 className="pt-2">
-              <u>Education</u>
-            </h6>
+            {index == 0 && (
+              <>
+                <h6 className="pt-2">
+                  <u>Education</u>
+                </h6>
+              </>
+            )}
             <strong>{edu.school}</strong> ({edu.fromDate} - {edu.toDate})
             <p>{edu.field}</p>
           </div>
