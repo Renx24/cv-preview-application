@@ -1,6 +1,5 @@
 {
   "name": "cv-preview-application",
-  "homepage": "https://renx24.github.io/cv-preview-application",
   "private": true,
   "version": "0.0.0",
   "type": "module",
