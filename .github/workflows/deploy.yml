@@ -24,4 +24,4 @@ jobs:
           username: rene
           key: ${{ secrets.DROPLET_SSH_KEY }}
           source: "dist/*"
-          target: "/var/www/renem.me/cv-builder-application"
+          target: "/var/www/renem.me/cv-preview-application"
